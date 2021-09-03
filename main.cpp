@@ -1,8 +1,14 @@
 #include <stdio.h>
+#include <iostream>
+
+using namespace std;
 
 int main(int argc, char* args[])
 {
-  printf("Hello SDL\n");
+  int a,b;
+  cin >> a >> b;
+  cout<< a+b;
+
 
   return 0;
 }
