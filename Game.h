@@ -16,8 +16,23 @@ class Game{
   SDL_Renderer* m_pRenderer=0;
   bool m_bRunning;//윈도우가 생성되지 않으면 랜더링 하지 않기 위한 변수
   
-  SDL_Texture* m_pTexture;
-  SDL_Rect m_sourceRectangle;
-  SDL_Rect m_destinationRectangle;
+ // SDL_Texture* m_pTexture;
+  //SDL_Rect m_sourceRectangle;
+  //SDL_Rect m_destinationRectangle;
+
+};
+class CreateTexture {
+public:
+	CreateTexture(){}
+	~CreateTexture(){}
+	void Create(SDL_Texture* m_pTexture);
+	void QuerySourceRectangle();
+	void InitDestinationRectangle();
+	void SetSourceRectangle(int x, int y, int w, int h);
+	void SetDestinationRectangle(int x, int y, int w, int h);
+
+	SDL_Texture* m_pTexture;
+	SDL_Rect m_sourceRectangle;
+	SDL_Rect m_destinationRectangle;
 
 };
