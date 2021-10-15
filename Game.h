@@ -1,9 +1,11 @@
-#pragma once
+#ifndef GAME_H
+#define GAME_H
 #include "SDL.h"
 #include <iostream>
 #include <SDL_image.h>
-#include "TextureManager.h"
-
+#include "GameObject.h"
+#include "Player.h"
+#include <vector>
 class Game {
 public:
 	Game() {}
@@ -17,6 +19,11 @@ public:
 private:
 	SDL_Window* m_pWindow = 0;
 	SDL_Renderer* m_pRenderer = 0;
-	int m_currentFrame;
 	bool m_bRunning;//윈도우가 생성되지 않으면 랜더링 하지 않기 위한 변수
+	GameObject m_go;
+	Player m_player;
+	std::vector <GameObject*> m_gameObjects;
+
 };
+
+#endif
