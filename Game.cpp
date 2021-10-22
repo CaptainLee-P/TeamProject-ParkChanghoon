@@ -1,19 +1,28 @@
 /*
-* 진행도
-*   <2주차:HelloSDL ~ 7주차: 상속, 다형성>
+*진행도
+*   <2주차:HelloSDL ~ 7주차: 유일객체, 추상class>
 * 실습 이외의 변경 사항
-*   GameObject.cpp 업데이트 내용 삭제
-*       GameObject는 부모 클래스이고 자식 클래스는 상속받아서 오버라이딩 쓰기 때문에 내용이 필요없다 판단해서 삭제함.
-*   Player.cpp 업데이트 함수 수정
-*       이제 플레이어가 화면 밖으로 나가지 않습니다.
-*       플레이어에게 애니메이션을 적용했습니다.
-*       플레이어가 방향을 전환하면 애니메이션도 전환됩니다.
-*   Player.h Load()함수와 Draw()함수 제거
-*       부모의 기능을 똑같이 받아 쓰기 때문에 재정의를 하지 않음.
+*   없습니다.
+*       
 */
 #include "Game.h"
+#include "Player.h"
+#include "Enemy.h"
 #include "TextureManager.h"
 
+Game* Game::s_pInstance = 0;
+Game::~Game()
+{
+}
+Game* Game::Instance()
+{
+    if (s_pInstance == 0)
+    {
+        s_pInstance = new Game();
+        return s_pInstance;
+    }
+    return s_pInstance;
+}
 bool Game::Init(const char* title, int xpos, int ypos, int width, int height, int flags)
 {
 
@@ -36,14 +45,9 @@ bool Game::Init(const char* title, int xpos, int ypos, int width, int height, in
     {
         return false;
     }
+    m_gameObjects.push_back(new Player(new LoaderParams(100, 100, 128, 82, "animate")));
+    m_gameObjects.push_back(new Enemy(new LoaderParams(100, 100, 128, 82, "animate")));
 
-    GameObject* m_go = new GameObject(); //아무 기능 없는 오브젝트
-    GameObject* m_player = new Player();
-
-    m_go->Load(100, 100, 128, 82, "animate");
-    m_player->Load(300, 300, 128, 82, "animate");
-    m_gameObjects.push_back(m_go);
-    m_gameObjects.push_back(m_player);
     m_bRunning = true;
     return true;
 }
@@ -53,7 +57,7 @@ void Game::Render()
     SDL_RenderClear(m_pRenderer);
     for (int i = 0; i < m_gameObjects.size(); i++)
     {
-        m_gameObjects[i]->Draw(m_pRenderer);
+        m_gameObjects[i]->Draw();
     }
     SDL_RenderPresent(m_pRenderer);
 }
@@ -94,3 +98,9 @@ void Game::Clean()
     SDL_DestroyRenderer(m_pRenderer);
     SDL_Quit();
 }
+
+SDL_Renderer* Game::getRenderer() const
+{
+    return m_pRenderer;
+}
+
