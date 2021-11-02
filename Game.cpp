@@ -1,9 +1,10 @@
 /*
 *진행도
-*   <2주차:HelloSDL ~ 7주차: 유일객체, 추상class>
+*   <2주차:HelloSDL ~ 9주차 Vector2D>
 * 실습 이외의 변경 사항
-*   없습니다.
-*       
+*   백터를 사용하기 때문에 m_x, m_y에 대한 내용을 다 없앰.
+*   부모인 SDLGameObject의 Update()를 사용하기 위해서 자식의 Update()를 재정의 하지 않음.
+*   애니메이션 적용
 */
 #include "Game.h"
 #include "Player.h"
@@ -45,7 +46,7 @@ bool Game::Init(const char* title, int xpos, int ypos, int width, int height, in
     {
         return false;
     }
-    m_gameObjects.push_back(new Player(new LoaderParams(100, 100, 128, 82, "animate")));
+    m_gameObjects.push_back(new Player(new LoaderParams(200, 100, 128, 82, "animate")));
     m_gameObjects.push_back(new Enemy(new LoaderParams(100, 100, 128, 82, "animate")));
 
     m_bRunning = true;

@@ -1,7 +1,7 @@
 #include "Enemy.h"
 
 Enemy::Enemy(const LoaderParams* pParams)
-	:SDLGameObject(pParams)
+	:SDLGameObject(pParams),speed(1)
 {
 
 }
@@ -11,13 +11,7 @@ void Enemy::Draw()
 	SDLGameObject::Draw();
 }
 
-void Enemy::Update()
-{
-	m_y+=1;
-	m_x += 1;
-	m_currentFrame = ((SDL_GetTicks() / 100) % 6);
-}
-
 void Enemy::Clean()
 {
+  
 }

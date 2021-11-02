@@ -6,7 +6,8 @@ class Player : public SDLGameObject
 public:
 	Player(const LoaderParams* pParams);
 	virtual void Draw();
-	virtual void Update();
 	virtual void Clean();
+private:
+  int speed;
 };
 #endif // !PLAYER_H

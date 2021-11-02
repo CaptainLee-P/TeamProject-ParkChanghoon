@@ -1,6 +1,6 @@
 #include "Player.h"
 Player::Player(const LoaderParams* pParams)
-	:SDLGameObject(pParams)
+	:SDLGameObject(pParams), speed(1)
 {
 
 }
@@ -10,11 +10,6 @@ void Player::Draw()
 	SDLGameObject::Draw();
 }
 
-void Player::Update()
-{
-	m_x -= 1;
-	m_currentFrame = ((SDL_GetTicks() / 100) % 6);
-}
 
 void Player::Clean()
 {

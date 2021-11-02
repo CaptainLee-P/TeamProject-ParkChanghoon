@@ -2,7 +2,7 @@
 #define SDLGAMEOBJECT_H
 #include "GameObject.h"
 #include <iostream>
-//#include "Vector2D.h"
+#include "Vector2D.h"
 class SDLGameObject : public GameObject
 {
 public:
@@ -12,7 +12,7 @@ public:
 	virtual void Clean();
 	virtual ~SDLGameObject() {}
 protected:
-	//Vector2D m_postion;
+	Vector2D m_position;
 	int m_x;
 	int m_y;
 	int m_width;
